@@ -16,12 +16,17 @@
                 document.querySelector("#result").innerHTML=``
                 var num = document.querySelector("#num").value;
 
+                var timeInit=Date.now();
                 for(var i=0; i<=num; i++){
                     var result=fibCalculator.fib(i);
 
                     console.log(result);
                     document.querySelector("#result").innerHTML += `Result ${i}: ${result}<br/>`;
                 }
+                var timeEnd=Date.now();
+                var timeEnlapsed=timeEnd-timeInit;
+
+                document.querySelector("#result").innerHTML+=`Time ${num}: ${timeEnlapsed} ms<br/>`
             }
         </script>
         <p>Fibonacci Calculator</p>
