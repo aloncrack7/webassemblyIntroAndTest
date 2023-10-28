@@ -9,22 +9,30 @@
     <body>
         <script>          
             function run_wasm(){
+                document.querySelector("#result").innerHTML=``
                 var num = document.querySelector("#num").value;
 
-                var result=Module.ccall(
-                    "fib",
-                    "number",
-                    ["number"],
-                    [num]
-                )
+                var timeInit=Date.now();
+                for(var i=0; i<=num; i++){
+                    var result=Module.ccall(
+                        "fib",
+                        "number",
+                        ["number"],
+                        [i]
+                    )
 
-                console.log(result);
-                document.querySelector("#result").innerHTML = `${result}<br/>`;
+                    console.log(result);
+                    document.querySelector("#result").innerHTML += `Result ${i}: ${result}<br/>`;
+                }
+                var timeEnd=Date.now();
+                var timeEnlapsed=timeEnd-timeInit;
+
+                document.querySelector("#result").innerHTML+=`Time ${num}: ${timeEnlapsed} ms<br/>`
             }
         </script>
         <p>Calculadora Fibonacci</p>
         <input type="number" id="num">
         <button onclick="run_wasm()">Boton</button>
-        <p>Resultado: <span id="result"></span></p>
+        <p><span id="result"></span></p>
     </body>
 </html>
