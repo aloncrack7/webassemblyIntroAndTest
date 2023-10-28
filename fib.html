@@ -6,9 +6,27 @@
         <meta http-equiv="Content-Type" content="text/html">
     </head>
     <body>
-        <p>Calculadora Fibonacci</p>
+        <script>     
+            var fibCalculator;
+            WebAssembly.instantiateStreaming(
+                fetch("fib.wasm"), {}
+            ).then(results => fibCalculator = results.instance.exports);
+        
+            function run_wasm(){
+                document.querySelector("#result").innerHTML=``
+                var num = document.querySelector("#num").value;
+
+                for(var i=0; i<=num; i++){
+                    var result=fibCalculator.fib(i);
+
+                    console.log(result);
+                    document.querySelector("#result").innerHTML += `Result ${i}: ${result}<br/>`;
+                }
+            }
+        </script>
+        <p>Fibonacci Calculator</p>
         <input type="number" id="num">
         <button onclick="run_wasm()">Boton</button>
-        <p>Resultado: <span id="result"></span></p>
+        <p><span id="result"></span></p>
     </body>
 </html>
