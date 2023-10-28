@@ -4,11 +4,31 @@
         <title>Fibonacci Calculator</title>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html">
+        <script src="fib.js"></script>
     </head>
     <body>
-        <p>Calculadora Fibonacci</p>
+        <script>     
+            var calculatorFib=Module.cwrap(
+                "fib",
+                "number",
+                ["number"]
+            )
+        
+            function run_wasm(){
+                document.querySelector("#result").innerHTML=``
+                var num = document.querySelector("#num").value;
+
+                for(var i=0; i<=num; i++){
+                    var result=calculatorFib(i);
+
+                    console.log(result);
+                    document.querySelector("#result").innerHTML += `Result ${i}: ${result}<br/>`;
+                }
+            }
+        </script>
+        <p>Fibonacci Calculator</p>
         <input type="number" id="num">
         <button onclick="run_wasm()">Boton</button>
-        <p>Resultado: <span id="result"></span></p>
+        <p><span id="result"></span></p>
     </body>
 </html>
