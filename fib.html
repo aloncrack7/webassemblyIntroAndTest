@@ -4,8 +4,24 @@
         <title>Fibonacci Calculator</title>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html">
+        <script src="fib.js"></script>
     </head>
     <body>
+        <script>          
+            function run_wasm(){
+                var num = document.querySelector("#num").value;
+
+                var result=Module.ccall(
+                    "fib",
+                    "number",
+                    ["number"],
+                    [num]
+                )
+
+                console.log(result);
+                document.querySelector("#result").innerHTML = `${result}<br/>`;
+            }
+        </script>
         <p>Calculadora Fibonacci</p>
         <input type="number" id="num">
         <button onclick="run_wasm()">Boton</button>
