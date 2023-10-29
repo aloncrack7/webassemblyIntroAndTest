@@ -1,4 +1,6 @@
 # webassemblyIntroAndTest
+![WebAssembly](https://a11ybadges.com/badge?logo=webassembly)
+![C++](https://a11ybadges.com/badge?logo=cplusplus)
 
 - This repository tests the type difference in computing Fibonacci numbers by using JS or WASM.
 - Every method used is in one branch
